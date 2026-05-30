@@ -24,36 +24,30 @@
 DECLARE_GLOBAL_DATA_PTR;
 
 #define LINE_WIDTH 40
-#define BLUE "\033[34m"
-#define YELLOW "\033[33m"
+#define CYAN "\033[36m"
+#define GREEN "\033[32m"
+#define WHITE "\033[37m"
 #define BOLD "\033[1m"
 #define RESET "\033[0m"
 static const char * const logo_lines[] = {
-	BLUE BOLD "                  ......::......                   ",
-	BLUE BOLD "             ...::::::::::::::::::...              ",
-	BLUE BOLD "          ..::::::::::::::::::::::::::..           ",
-	BLUE BOLD "        .::::.:::::::::::::::...::::.::::.         ",
-	BLUE BOLD "      .::::::::::::::::::::..::::::::::::::.       ",
-	BLUE BOLD "    .::.:::::::::::::::::::" YELLOW "=*%#*" BLUE "::::::::::.::.     ",
-	BLUE BOLD "   .:::::::::::::::::....." YELLOW "*%%*-" BLUE ":....::::::::::.    ",
-	BLUE BOLD "  .:.:::...:::::::::.:-" YELLOW "===##*---==-" BLUE "::::::::::.:.   ",
-	BLUE BOLD " .::::..::::........" YELLOW "-***#****###****-" BLUE "...::::::.:.  ",
-	BLUE BOLD " ::.:.-" YELLOW "+***+=" BLUE "::-" YELLOW "=+**#%%%%%%%%%%%%###*= " BLUE "-::...::::. ",
-	BLUE BOLD ".:.::-" YELLOW "*****###%%%%%%%%%%%%%%%%%%%%%%%%%%#*=" BLUE ":..:::: ",
-	BLUE BOLD ".::" YELLOW "##" BLUE ":" YELLOW "***#%%%%%%#####%%%%%%%####%%%%%####%%%*" BLUE "-.::. ",
-	BLUE BOLD ":.:" YELLOW "#%" BLUE "::" YELLOW "*%%%%%%%#*****##%%%#*****##%%##*****#%%+" BLUE ".::.",
-	BLUE BOLD ".::" YELLOW "**==#%%%%%%%##****#%%%%##****#%%%%#****###%%" BLUE ":.. ",
-	BLUE BOLD "..:" YELLOW "#%" BLUE "::" YELLOW "*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#%%%%%+ " BLUE ".:.",
-	BLUE BOLD " ::" YELLOW "##" BLUE ":" YELLOW "+**#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%* " BLUE "-.:: ",
-	BLUE BOLD " ..::-" YELLOW "#****#%#%%%%%%%%%%%%%%%%%%%%%%%%%%#*=" BLUE "-..::.  ",
-	BLUE BOLD "  ...:=" YELLOW "*****=" BLUE "::-" YELLOW "=+**###%%%%%%%%###**+=  " BLUE "--:...:::  ",
-	BLUE BOLD "   .::.::--:........::::::--::::::......::::::.    ",
-	BLUE BOLD "    .::.....::::::::::...........:::::::::.::.     ",
-	BLUE BOLD "      .::::::::::::::::::::::::::::::::::::.       ",
-	BLUE BOLD "        .::::.::::::::::::::::::::::.::::.         ",
-	BLUE BOLD "          ..::::::::::::::::::::::::::..           ",
-	BLUE BOLD "             ...::::::::::::::::::...              ",
-	BLUE BOLD "                  ......::......                   ",
+	GREEN BOLD "              .''.                 ",
+	GREEN BOLD "          .'.     '.               ",
+	GREEN BOLD "       .'.  .-^- .  '.             ",
+	GREEN BOLD "      :   .'  |  '.   :            ",
+	GREEN BOLD "      '.   '. | .'   .'            ",
+	GREEN BOLD "        '-.  \\|/  .-'              ",
+	GREEN BOLD "            __|__                  ",
+	GREEN BOLD "          _/_____|_                ",
+	CYAN BOLD  "    ___                  _         ",
+	CYAN BOLD  "   /   |  _________ ____(_)___ _   ",
+	CYAN BOLD  "  / /| | / ___/ __ `/ __/ / __ `/  ",
+	CYAN BOLD  " / ___ |/ /__/ /_/ / /_/ / /_/ /   ",
+	CYAN BOLD  "/_/  |_|\\___/\\__,_/\\__,_/\\__,_/    ",
+	WHITE BOLD " _                    _            ",
+	WHITE BOLD "| |    ___   __ _  __| | ___ _ __  ",
+	WHITE BOLD "| |   / _ \\ / _` |/ _` |/ _ \\ '__| ",
+	WHITE BOLD "| |__| (_) | (_| | (_| |  __/ |    ",
+	WHITE BOLD "|_____\\___/ \\__,_|\\__,_|\\___|_|    ",
 };
 
 enum output_lines {
@@ -123,15 +117,14 @@ static int do_ufetch(struct cmd_tbl *cmdtp, int flag, int argc,
 			putc('\n');
 			break;
 		case KERNEL:
-			printf("Kernel:" RESET " %s\n", U_BOOT_VERSION);
+			printf("Loader:" RESET " %s\n", U_BOOT_VERSION);
 			break;
 		case SYSINFO:
 			printf("Config:" RESET " %s_defconfig\n", CONFIG_SYS_CONFIG_NAME);
 			break;
 		case HOST:
 			model = ofnode_read_string(ofnode_root(), "model");
-			if (model)
-				printf("Host:" RESET " %s\n", model);
+			printf("Host:" RESET " %s\n", model ?: "unknown");
 			break;
 		case UPTIME:
 			printf("Uptime:" RESET " %ld seconds\n", get_timer(0) / 1000);
