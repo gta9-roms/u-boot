@@ -228,7 +228,7 @@ static int do_ufetch(struct cmd_tbl *cmdtp, int flag, int argc,
 }
 
 U_BOOT_CMD(ufetch, 2, 1, do_ufetch,
-	   "U-Boot fetch utility",
+	   "Acacialoader fetch utility",
 	   "Print information about your device.\n"
 	   "    -n    Don't print the ASCII logo"
 );

@@ -21,6 +21,7 @@
 #include <time.h>
 #include <u-boot/crc.h>
 #include <usb.h>
+#include <version.h>
 #include <watchdog.h>
 #include <asm/global_data.h>
 #include <linux/libfdt_env.h>
@@ -3999,7 +4000,7 @@ static struct efi_boot_services efi_boot_services = {
 	.create_event_ex = efi_create_event_ex,
 };
 
-static u16 __efi_runtime_data firmware_vendor[] = u"Das U-Boot";
+static u16 __efi_runtime_data firmware_vendor[] = U_BOOT_NAME_W;
 
 struct efi_system_table __efi_runtime_data systab = {
 	.hdr = {

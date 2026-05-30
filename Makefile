@@ -1717,17 +1717,17 @@ ifdef CONFIG_SPL_LOAD_FIT
 MKIMAGEFLAGS_u-boot.img = -f auto -A $(ARCH) -T firmware -C none -O u-boot \
 	-a $(CONFIG_TEXT_BASE) -e $(CONFIG_SYS_UBOOT_START) \
 	-p $(CONFIG_FIT_EXTERNAL_OFFSET) \
-	-n "U-Boot $(UBOOTRELEASE) for $(BOARD) board" -E \
+	-n "Acacialoader $(UBOOTRELEASE) for $(BOARD) board" -E \
 	$(patsubst %,-b $(dt_dir)/%.dtb,$(subst ",,$(DEVICE_TREE))) \
 	$(patsubst %,-b $(dt_dir)/%.dtb,$(subst ",,$(CONFIG_OF_LIST))) \
 	$(patsubst %,-b $(dt_dir)/%.dtbo,$(subst ",,$(CONFIG_OF_OVERLAY_LIST)))
 else
 MKIMAGEFLAGS_u-boot.img = -A $(ARCH) -T firmware -C none -O u-boot \
 	-a $(CONFIG_TEXT_BASE) -e $(CONFIG_SYS_UBOOT_START) \
-	-n "U-Boot $(UBOOTRELEASE) for $(BOARD) board"
+	-n "Acacialoader $(UBOOTRELEASE) for $(BOARD) board"
 MKIMAGEFLAGS_u-boot-ivt.img = -A $(ARCH) -T firmware_ivt -C none -O u-boot \
 	-a $(CONFIG_TEXT_BASE) -e $(CONFIG_SYS_UBOOT_START) \
-	-n "U-Boot $(UBOOTRELEASE) for $(BOARD) board"
+	-n "Acacialoader $(UBOOTRELEASE) for $(BOARD) board"
 u-boot-ivt.img: MKIMAGEOUTPUT = u-boot-ivt.img.log
 endif
 
@@ -1758,7 +1758,7 @@ UBOOT_BIN := u-boot.bin
 
 MKIMAGEFLAGS_u-boot-lzma.img = -A $(ARCH) -T standalone -C lzma -O u-boot \
 	-a $(CONFIG_TEXT_BASE) -e $(CONFIG_SYS_UBOOT_START) \
-	-n "U-Boot $(UBOOTRELEASE) for $(BOARD) board"
+	-n "Acacialoader $(UBOOTRELEASE) for $(BOARD) board"
 
 u-boot.bin.lzma: u-boot.bin FORCE
 	$(call if_changed,lzma)
@@ -2306,7 +2306,9 @@ endif
 # Use sed to remove leading zeros from PATCHLEVEL to avoid using octal numbers
 define filechk_version.h
 	(echo \#define PLAIN_VERSION \"$(UBOOTRELEASE)\"; \
-	echo \#define U_BOOT_VERSION \"U-Boot \" PLAIN_VERSION; \
+	echo \#define U_BOOT_NAME \"Acacialoader\"; \
+	echo \#define U_BOOT_NAME_W u\"Acacialoader\"; \
+	echo \#define U_BOOT_VERSION U_BOOT_NAME \" \" PLAIN_VERSION; \
 	echo \#define U_BOOT_VERSION_NUM $(VERSION); \
 	echo \#define U_BOOT_VERSION_NUM_PATCH $$(echo $(PATCHLEVEL) | \
 		sed -e "s/^0*//"); \

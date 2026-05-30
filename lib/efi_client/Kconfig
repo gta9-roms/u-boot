@@ -1,16 +1,16 @@
-menu "U-Boot as UEFI application"
+menu "Acacialoader as UEFI application"
 	depends on X86
 
 config EFI_CLIENT
-	bool "Support running U-Boot from EFI"
+	bool "Support running Acacialoader from EFI"
 	depends on X86
 	imply X86_TSC_READ_BASE
 	select EFI
 	help
-	  U-Boot can be started from EFI on certain platforms. This allows
-	  EFI to perform most of the system init and then jump to U-Boot for
-	  final system boot. Another option is to run U-Boot as an EFI
-	  application, with U-Boot using EFI's drivers instead of its own.
+	  Acacialoader can be started from EFI on certain platforms. This allows
+	  EFI to perform most of the system init and then jump to Acacialoader
+	  for final system boot. Another option is to run Acacialoader as an EFI
+	  application, with Acacialoader using EFI's drivers instead of its own.
 
 choice
 	prompt "Select EFI mode to use"

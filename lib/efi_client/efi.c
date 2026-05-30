@@ -17,6 +17,7 @@
 #include <linux/types.h>
 #include <efi.h>
 #include <efi_api.h>
+#include <version.h>
 
 static struct efi_priv *global_priv;
 
@@ -102,7 +103,7 @@ int efi_init(struct efi_priv *priv, const char *banner, efi_handle_t image,
 	priv->parent_image = image;
 	priv->run = sys_table->runtime;
 
-	efi_puts(priv, "U-Boot EFI ");
+	efi_puts(priv, U_BOOT_NAME " EFI ");
 	efi_puts(priv, banner);
 	efi_putc(priv, ' ');
 

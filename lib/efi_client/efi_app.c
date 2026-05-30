@@ -18,6 +18,7 @@
 #include <malloc.h>
 #include <sysreset.h>
 #include <u-boot/uuid.h>
+#include <version.h>
 #include <asm/global_data.h>
 #include <linux/err.h>
 #include <linux/types.h>
@@ -206,7 +207,7 @@ static void efi_exit(void)
 	struct efi_priv *priv = efi_get_priv();
 
 	free_memory(priv);
-	printf("U-Boot EFI exiting\n");
+	printf("%s EFI exiting\n", U_BOOT_NAME);
 	priv->boot->exit(priv->parent_image, EFI_SUCCESS, 0, NULL);
 }
 
